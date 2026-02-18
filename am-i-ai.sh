@@ -341,6 +341,14 @@ ami_check_ps_tree() {
 # Returns the detected AI tool name, or "none" if no AI detected
 # Priority order ensures more specific tools take precedence over generic ones
 ami_detect() {
+    # Allow callers to opt out of AI detection (e.g., read-only tools)
+    # Set AMI_PASSTHROUGH=true to force "none" result
+    if [[ "${AMI_PASSTHROUGH:-}" == "true" ]]; then
+        _ami_debug "AMI_PASSTHROUGH is set, returning none"
+        echo "none"
+        return 0
+    fi
+
     _ami_debug "Starting AI detection"
 
     # Phase 1: Environment variable detection
@@ -425,6 +433,7 @@ ami_detect() {
 }
 
 # Convenience function: returns 0 (true) if AI is detected, 1 (false) otherwise
+# Note: Set AMI_PASSTHROUGH=true to force this to return false (no AI detected)
 ami_is_ai() {
     local result
     result=$(ami_detect)
