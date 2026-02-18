@@ -443,6 +443,14 @@ ami_is_ai() {
 # Get all detected AI tools (not just the highest priority one)
 # Returns space-separated list or empty string
 ami_detect_all() {
+    # Allow callers to opt out of AI detection (e.g., read-only tools)
+    # Set AMI_PASSTHROUGH=true to force empty result
+    if [[ "${AMI_PASSTHROUGH:-}" == "true" ]]; then
+        _ami_debug "AMI_PASSTHROUGH is set, returning empty"
+        echo ""
+        return 0
+    fi
+
     local env_detected
     env_detected=$(ami_check_env)
 

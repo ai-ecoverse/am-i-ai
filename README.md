@@ -132,6 +132,7 @@ Crush > Goose > Zed
 | Variable | Description | Default |
 |----------|-------------|---------|
 | `AMI_DEBUG` | Enable debug output | `false` |
+| `AMI_PASSTHROUGH` | Skip all AI detection, return "none" | `false` |
 
 ## Installation
 
