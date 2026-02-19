@@ -18,7 +18,7 @@
 #   fi
 
 # Version of the am-i-ai library
-AMI_VERSION="1.2.0"
+AMI_VERSION="1.2.1"
 
 # Debug mode - set AMI_DEBUG=true to enable
 AMI_DEBUG="${AMI_DEBUG:-false}"
