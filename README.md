@@ -1,10 +1,10 @@
 # am-i-ai - AI Coding Agent Detection Library
 
-[![Part of AI Ecoverse](https://img.shields.io/badge/AI-Ecoverse-blue?style=for-the-badge)](https://github.com/trieloff/ai-ecoverse)
+[![Part of AI Ecoverse](https://img.shields.io/badge/AI-Ecoverse-blue?style=for-the-badge)](https://github.com/ai-ecoverse/.github)
 
 ![am-i-ai hero](hero.png)
 
-A lightweight, portable shell library for detecting whether code is being executed by an AI coding agent. Used by [ai-aligned-git](https://github.com/trieloff/ai-aligned-git) and [ai-aligned-gh](https://github.com/trieloff/ai-aligned-gh) to provide proper AI attribution.
+A lightweight, portable shell library for detecting whether code is being executed by an AI coding agent. Used by [ai-aligned-git](https://github.com/ai-ecoverse/ai-aligned-git) and [ai-aligned-gh](https://github.com/ai-ecoverse/ai-aligned-gh) to provide proper AI attribution.
 
 ## Why?
 
@@ -21,7 +21,7 @@ AI coding agents like Claude Code, Gemini, Cursor, and others are increasingly c
 
 ```bash
 # Download
-curl -fsSL https://raw.githubusercontent.com/trieloff/am-i-ai/main/am-i-ai.sh -o am-i-ai.sh
+curl -fsSL https://raw.githubusercontent.com/ai-ecoverse/am-i-ai/main/am-i-ai.sh -o am-i-ai.sh
 chmod +x am-i-ai.sh
 
 # Detect current AI
@@ -139,14 +139,14 @@ Crush > Goose > Zed
 ### Manual Download
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trieloff/am-i-ai/main/am-i-ai.sh \
+curl -fsSL https://raw.githubusercontent.com/ai-ecoverse/am-i-ai/main/am-i-ai.sh \
     -o ~/.local/lib/am-i-ai.sh
 ```
 
 ### With install script
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/trieloff/am-i-ai/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/ai-ecoverse/am-i-ai/main/install.sh | sh
 ```
 
 ### For Projects
@@ -155,10 +155,10 @@ Add as a git submodule or copy the file directly:
 
 ```bash
 # Submodule
-git submodule add https://github.com/trieloff/am-i-ai.git vendor/am-i-ai
+git submodule add https://github.com/ai-ecoverse/am-i-ai.git vendor/am-i-ai
 
 # Or direct download
-curl -fsSL https://raw.githubusercontent.com/trieloff/am-i-ai/main/am-i-ai.sh \
+curl -fsSL https://raw.githubusercontent.com/ai-ecoverse/am-i-ai/main/am-i-ai.sh \
     -o lib/am-i-ai.sh
 ```
 
@@ -191,15 +191,15 @@ To add detection for a new AI tool:
 
 ## Related Projects
 
-Part of the **[AI Ecoverse](https://github.com/trieloff/ai-ecoverse)** - tools for AI-assisted development:
+Part of the **[AI Ecoverse](https://github.com/ai-ecoverse/.github)** - tools for AI-assisted development:
 
-- **[ai-aligned-git](https://github.com/trieloff/ai-aligned-git)** - Git wrapper for safe AI commits (uses am-i-ai)
-- **[ai-aligned-gh](https://github.com/trieloff/ai-aligned-gh)** - GitHub CLI wrapper for AI attribution (uses am-i-ai)
-- **[yolo](https://github.com/trieloff/yolo)** - AI CLI launcher with worktree isolation
-- **[as-a-bot](https://github.com/trieloff/as-a-bot)** - GitHub App token broker
-- **[vibe-coded-badge-action](https://github.com/trieloff/vibe-coded-badge-action)** - AI contribution badges
-- **[gh-workflow-peek](https://github.com/trieloff/gh-workflow-peek)** - GitHub Actions log filtering
-- **[upskill](https://github.com/trieloff/upskill)** - Install Claude/Agent skills
+- **[ai-aligned-git](https://github.com/ai-ecoverse/ai-aligned-git)** - Git wrapper for safe AI commits (uses am-i-ai)
+- **[ai-aligned-gh](https://github.com/ai-ecoverse/ai-aligned-gh)** - GitHub CLI wrapper for AI attribution (uses am-i-ai)
+- **[yolo](https://github.com/ai-ecoverse/yolo)** - AI CLI launcher with worktree isolation
+- **[as-a-bot](https://github.com/ai-ecoverse/as-a-bot)** - GitHub App token broker
+- **[vibe-coded-badge-action](https://github.com/ai-ecoverse/vibe-coded-badge-action)** - AI contribution badges
+- **[gh-workflow-peek](https://github.com/ai-ecoverse/gh-workflow-peek)** - GitHub Actions log filtering
+- **[upskill](https://github.com/ai-ecoverse/gh-upskill)** - Install Claude/Agent skills
 
 ## License
 

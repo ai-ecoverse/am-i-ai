@@ -61,7 +61,7 @@ generate_bundle() {
     cat << 'BUNDLE_HEADER'
 # ===========================================================================
 # Bundled from am-i-ai v1.0.0
-# https://github.com/trieloff/am-i-ai
+# https://github.com/ai-ecoverse/am-i-ai
 #
 # AI coding agent detection library - provides functions to detect whether
 # code is running under AI control (Claude, Gemini, Cursor, etc.)

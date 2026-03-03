@@ -1,6 +1,6 @@
 #!/bin/bash
 # am-i-ai.sh - A shared shell library for detecting AI coding agents
-# Part of the AI Ecoverse: https://github.com/trieloff/ai-ecoverse
+# Part of the AI Ecoverse: https://github.com/ai-ecoverse/.github
 #
 # This library provides functions to detect whether the current execution context
 # is being driven by an AI coding agent (Claude, Gemini, Cursor, etc.)
@@ -525,7 +525,7 @@ ami_get_name() {
 # Print version information
 ami_version() {
     echo "am-i-ai version $AMI_VERSION"
-    echo "https://github.com/trieloff/am-i-ai"
+    echo "https://github.com/ai-ecoverse/am-i-ai"
 }
 
 # If this script is run directly (not sourced), run the detection

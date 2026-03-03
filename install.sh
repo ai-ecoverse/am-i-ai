@@ -14,10 +14,10 @@ mkdir -p "$INSTALL_DIR"
 
 # Download the library
 if command -v curl >/dev/null 2>&1; then
-    curl -fsSL "https://raw.githubusercontent.com/trieloff/am-i-ai/main/am-i-ai.sh" \
+    curl -fsSL "https://raw.githubusercontent.com/ai-ecoverse/am-i-ai/main/am-i-ai.sh" \
         -o "$INSTALL_DIR/$SCRIPT_NAME"
 elif command -v wget >/dev/null 2>&1; then
-    wget -q "https://raw.githubusercontent.com/trieloff/am-i-ai/main/am-i-ai.sh" \
+    wget -q "https://raw.githubusercontent.com/ai-ecoverse/am-i-ai/main/am-i-ai.sh" \
         -O "$INSTALL_DIR/$SCRIPT_NAME"
 else
     echo "Error: curl or wget required" >&2
