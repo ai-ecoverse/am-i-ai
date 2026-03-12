@@ -1,5 +1,7 @@
 # am-i-ai - AI Coding Agent Detection Library
 
+[![98% Vibe_Coded](https://img.shields.io/badge/98%25-Vibe_Coded-ff69b4?style=for-the-badge&logo=claude&logoColor=white)](https://github.com/ai-ecoverse/vibe-coded-badge-action)
+
 [![Part of AI Ecoverse](https://img.shields.io/badge/AI-Ecoverse-blue?style=for-the-badge)](https://github.com/ai-ecoverse/.github)
 
 ![am-i-ai hero](hero.png)
