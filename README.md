@@ -83,6 +83,7 @@ ami_detect_all
 | [Cline](https://cline.bot) | Process + env | `CLINE_TASK_ID` |
 | [Roo Code](https://roocode.dev) | Process + env | `ROO_CODE_TASK_ID` |
 | [Windsurf](https://codeium.com/windsurf) | Process + env | `WINDSURF_SESSION` |
+| [Grok Build](https://x.ai) | Process + env | `GROK_CODE_XAI_API_KEY`, `GROK_MODEL` (primary: process tree `grok`) |
 
 ## Detection Methods
 
@@ -108,7 +109,7 @@ Zed presents a unique challenge because it sets environment variables for all te
 When multiple AI tools are detected (e.g., Claude running inside Cursor), the more specific tool takes precedence:
 
 ```
-Amp > Codex > Aider > Claude > Gemini > Qwen > Droid > OpenCode >
+Amp > Codex > Aider > Grok > Claude > Gemini > Qwen > Droid > OpenCode >
 Cursor > Copilot > Kimi > OpenHands > Cline > Roo > Windsurf >
 Crush > Goose > Zed
 ```
