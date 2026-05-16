@@ -83,6 +83,7 @@ ami_detect_all
 | [Cline](https://cline.bot) | Process + env | `CLINE_TASK_ID` |
 | [Roo Code](https://roocode.dev) | Process + env | `ROO_CODE_TASK_ID` |
 | [Windsurf](https://codeium.com/windsurf) | Process + env | `WINDSURF_SESSION` |
+| [Pi](https://pi.dev) | Process + env | `PI_CODING_AGENT` (primary env var; process tree `pi-coding-agent`) |
 | [Grok Build](https://x.ai/cli) | Process + env | `GROK_CODE_XAI_API_KEY`, `GROK_MODEL` (primary: process tree `grok`) |
 
 ## Detection Methods

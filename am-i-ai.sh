@@ -72,6 +72,14 @@ ami_check_env() {
         _ami_debug "Detected Grok Build via environment variable"
     fi
 
+    # Pi Coding Agent detection (package @earendil-works/pi-coding-agent, https://pi.dev)
+    # Primary: PI_CODING_AGENT env var (set e.g. to true); process tree uses "pi-coding-agent"
+    # (npm-installed path fragment) to avoid false-positives on bare "pi" (pip/mpi/etc.)
+    if [ -n "$PI_CODING_AGENT" ]; then
+        detected="$detected pi"
+        _ami_debug "Detected Pi via environment variable"
+    fi
+
     # Gemini detection
     if [ -n "$GEMINI_CLI" ]; then
         detected="$detected gemini"
@@ -301,6 +309,21 @@ ami_check_ps_tree() {
             detected="$detected grok"
             _ami_debug "Detected Grok Build in process tree at depth $depth"
         fi
+        # Pi Coding Agent detection (package @earendil-works/pi-coding-agent, https://pi.dev)
+        # Safe whole-token match: pad both sides of ps output with spaces, then test for the
+        # space-bounded token " pi " (or " pi-coding-agent" path fragment). Simplest approach,
+        # no regex. Catches the launched `pi` binary (shows as COMM/COMMAND="pi") without
+        # false positives on pip/mpi/picocom/etc. Env var PI_CODING_AGENT is still primary.
+        local pi_out
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            pi_out="$(ps -p "$current_pid" -o comm= 2>/dev/null) $(ps -p "$current_pid" -o command= 2>/dev/null)"
+        else
+            pi_out="$(ps -p "$current_pid" -o comm= 2>/dev/null) $(ps -p "$current_pid" -o cmd= 2>/dev/null)"
+        fi
+        if echo " $pi_out " | grep -qi " pi " || echo " $pi_out " | grep -qi " pi-coding-agent "; then
+            detected="$detected pi"
+            _ami_debug "Detected Pi in process tree at depth $depth (space-bounded token)"
+        fi
         # Auggie detection - look for auggie in process command
         if ami_process_contains "$current_pid" "auggie"; then
             detected="$detected auggie"
@@ -380,7 +403,7 @@ ami_detect() {
     _ami_debug "Process tree detected: '$ps_detected'"
     _ami_debug "Combined detected: '$all_detected'"
 
-    # Priority order: Amp > Codex > Aider > Grok > Claude > Gemini > Qwen > Droid > OpenCode > Cursor > Copilot > Kimi > OpenHands > Cline > Roo > Windsurf > Crush > Goose > Auggie > Zed
+    # Priority order: Amp > Codex > Aider > Grok > Pi > Claude > Gemini > Qwen > Droid > OpenCode > Cursor > Copilot > Kimi > OpenHands > Cline > Roo > Windsurf > Crush > Goose > Auggie > Zed
     # Zed is last because it often hosts other AI tools
     # More specific AI tools take precedence over IDE-level tools
     if [[ "$all_detected" =~ "amp" ]]; then
@@ -395,6 +418,9 @@ ami_detect() {
     elif [[ "$all_detected" =~ "grok" ]]; then
         _ami_debug "Final result: grok"
         echo "grok"
+    elif [[ " $all_detected " =~ " pi " ]]; then
+        _ami_debug "Final result: pi"
+        echo "pi"
     elif [[ "$all_detected" =~ "claude" ]]; then
         _ami_debug "Final result: claude"
         echo "claude"
@@ -503,6 +529,7 @@ ami_get_email() {
         "crush")    echo "crush@charm.land" ;;
         "goose")    echo "goose@opensource.block.xyz" ;;
         "grok")     echo "grok@x.ai" ;;
+        "pi")       echo "pi@earendil.works" ;;
         "auggie")   echo "noreply@augmentcode.com" ;;
         "cline")    echo "cline@cline.bot" ;;
         "roo")      echo "roo@roocode.dev" ;;
@@ -533,6 +560,7 @@ ami_get_name() {
         "crush")    echo "Crush" ;;
         "goose")    echo "Goose User" ;;
         "grok")     echo "Grok Build" ;;
+        "pi")       echo "Pi" ;;
         "auggie")   echo "Augment Code" ;;
         "cline")    echo "Cline" ;;
         "roo")      echo "Roo Code" ;;
@@ -546,6 +574,12 @@ ami_version() {
     echo "am-i-ai version $AMI_VERSION"
     echo "https://github.com/ai-ecoverse/am-i-ai"
 }
+
+# Quick test cases for Pi detection (space-padded whole-token approach; run after `source am-i-ai.sh`):
+#   all_detected=" copilot " ; [[ " $all_detected " =~ " pi " ]] && echo FAIL || echo "ok: copilot not matched as pi"
+#   all_detected=" pi "      ; [[ " $all_detected " =~ " pi " ]] && echo "ok: pi matched" || echo FAIL
+#   all_detected=" copilot pi " ; [[ " $all_detected " =~ " pi " ]] && echo "ok: pi-and-copilot (pi wins)" || echo FAIL
+#   AMI_DEBUG=false ami_check_ps_tree | grep -q pi && echo "ok: ps tree detects pi (via space-bounded token)"
 
 # If this script is run directly (not sourced), run the detection
 if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
